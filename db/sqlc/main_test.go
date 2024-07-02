@@ -1,12 +1,10 @@
-package testutil
+package db
 
 import (
     "database/sql"
     "log"
     "os"
     "testing"
-
-    db "go-backend-master/db/sqlc"
 	_ "github.com/lib/pq"
 )
 
@@ -15,7 +13,7 @@ const (
     dbSource = "postgresql://root:1234@localhost:5432/simple_bank?sslmode=disable"
 )
 
-var testQueries *db.Queries
+var testQueries *Queries
 
 // TestMain sets up the database connection and initializes test queries.
 func TestMain(m *testing.M) {
@@ -31,7 +29,7 @@ func TestMain(m *testing.M) {
         }
     }()
 
-    testQueries = db.New(conn)
+    testQueries = New(conn)
 
     // Run tests
     os.Exit(m.Run())
