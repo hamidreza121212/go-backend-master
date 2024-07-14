@@ -21,7 +21,6 @@ type Entry struct {
 	AccountID int64 `json:"account_id"`
 	// can be negative or positive
 	Amount    int64     `json:"amount"`
-	Currency  string    `json:"currency"`
 	CreatedAt time.Time `json:"created_at"`
 }
 

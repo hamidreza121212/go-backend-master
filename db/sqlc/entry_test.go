@@ -20,8 +20,8 @@ func createRandomEntry(t *testing.T, account Account) Entry {
 	require.NoError(t, err)
 	require.NotEmpty(t, entry)
 
-	require.Equal(t, entry.ID, arg.AccountID)
-	require.Equal(t, entry.Amount, arg.Amount)
+	require.Equal(t, arg.AccountID, entry.AccountID)
+	require.Equal(t, arg.Amount, entry.Amount)
 
 	require.NotZero(t, entry.ID)
 	require.NotZero(t, entry.CreatedAt)
@@ -32,5 +32,5 @@ func createRandomEntry(t *testing.T, account Account) Entry {
 
 func TestCreateEntry(t *testing.T) {
 	account := createRandomAccount(t)
-	createRandomAccount(t, account)
+	createRandomEntry(t, account)
 }
