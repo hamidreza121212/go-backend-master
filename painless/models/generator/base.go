@@ -33,7 +33,7 @@ func RandomOwner() string {
 	return RandomString(6)
 }
 
-func RandomMony() int32 {
+func RandomMoney() int32 {
 	return RandomInt(0, 1000)
 }
 
