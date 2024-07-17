@@ -14,22 +14,23 @@ const (
 )
 
 var testQueries *Queries
-
+var testDB *sql.DB
 // TestMain sets up the database connection and initializes test queries.
 func TestMain(m *testing.M) {
-    conn, err := sql.Open(dbDriver, dbSource)
+    var err error
+    testDB, err = sql.Open(dbDriver, dbSource)
     if err != nil {
         log.Fatal("cannot connect to db:", err)
     }
 
     // Ensure the database connection is closed after tests run
     defer func() {
-        if err = conn.Close(); err != nil {
+        if err = testDB.Close(); err != nil {
             log.Fatal("cannot close db connection:", err)
         }
     }()
 
-    testQueries = New(conn)
+    testQueries = New(testDB)
 
     // Run tests
     os.Exit(m.Run())
